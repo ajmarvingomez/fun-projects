@@ -10,7 +10,9 @@ This Turborepo includes the following packages/apps:
 - `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
 - `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+#### Next RPG
+
+Next RPG is a role playing game built in next.js
 
 ### Utilities
 
