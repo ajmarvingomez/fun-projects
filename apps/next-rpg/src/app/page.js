@@ -78,11 +78,11 @@ export default function Home() {
   }
 
   function getClass(entity) {
-    return classes.find( (item) => item.slug === entity.characterClass )
+    return classes.find((item) => item.slug === entity.characterClass);
   }
 
   function getSpecies(entity) {
-    return species.find( (item) => item.slug === entity.species )
+    return species.find((item) => item.slug === entity.species);
   }
 
   function createCharacter(formData) {
@@ -135,8 +135,12 @@ export default function Home() {
             </div>
             <div>
               <h2>Debug</h2>
-              <button onClick={() => subtractPlayerHealth(1, player)}>Subtract Player Health</button>
-              <button onClick={() => addPlayerHealth(1, player)}>Add Player Health</button>
+              <button onClick={() => subtractPlayerHealth(1, player)}>
+                Subtract Player Health
+              </button>
+              <button onClick={() => addPlayerHealth(1, player)}>
+                Add Player Health
+              </button>
             </div>
           </div>
         )}
