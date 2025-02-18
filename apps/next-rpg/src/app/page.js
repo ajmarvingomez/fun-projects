@@ -86,7 +86,7 @@ export default function Home() {
       ...player,
       name: name,
       species: species,
-      class: _class,
+      characterClass: _class,
       hp: 10,
       maxHP: 10,
     });
@@ -107,7 +107,7 @@ export default function Home() {
                 Species: <span>{player.species}</span>
               </div>
               <div>
-                Class: <span>{player.class}</span>
+                Class: <span>{player.characterClass}</span>
               </div>
             </div>
             <div>
