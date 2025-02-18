@@ -52,36 +52,36 @@ export default function Home() {
 
   function addHealth(number) {
     let newPlayer = {
-      ...player
-    }
-    let newHP = newPlayer.hp + number
-    if( newHP > newPlayer.maxHP ) {
-      newHP = newPlayer.maxHP
+      ...player,
+    };
+    let newHP = newPlayer.hp + number;
+    if (newHP > newPlayer.maxHP) {
+      newHP = newPlayer.maxHP;
     }
 
-    newPlayer.hp = newHP
-    setPlayer(newPlayer)
+    newPlayer.hp = newHP;
+    setPlayer(newPlayer);
   }
 
   function subtractHealth(number) {
-
-    let newPlayer = {...player}
-    let newHP = newPlayer.hp - number
-    if( newHP < 0 ) {
-      newHP = 0
+    let newPlayer = { ...player };
+    let newHP = newPlayer.hp - number;
+    if (newHP < 0) {
+      newHP = 0;
     }
 
-    newPlayer.hp = newHP
+    newPlayer.hp = newHP;
     setPlayer({
-      ...newPlayer, hp: newHP
-    })
+      ...newPlayer,
+      hp: newHP,
+    });
   }
 
   function createCharacter(formData) {
     const name = formData.get("name");
     const species = formData.get("species");
     const _class = formData.get("class");
-    console.log(formData);
+    // console.log(formData);
     setPlayer({
       ...player,
       name: name,
@@ -112,21 +112,23 @@ export default function Home() {
             </div>
             <div>
               <div>
-                {<Image style={
-                  {"filter": "invert(1)"}
-                } width={10} height={10} src='/icons/health-normal.svg' alt="" />} HP: <span>{player.hp}</span> <span>/</span>
+                {
+                  <Image
+                    style={{ filter: "invert(1)" }}
+                    width={10}
+                    height={10}
+                    src="/icons/health-normal.svg"
+                    alt=""
+                  />
+                }{" "}
+                HP: <span>{player.hp}</span> <span>/</span>
                 <span>{player.maxHP}</span>
               </div>
             </div>
             <div>
               <h2>Debug</h2>
-              <button onClick={
-                () => subtractHealth(1)
-              } >Subtract Health</button>
-              <button onClick={
-                () => addHealth(1)
-              }>Add Health</button>
-
+              <button onClick={() => subtractHealth(1)}>Subtract Health</button>
+              <button onClick={() => addHealth(1)}>Add Health</button>
             </div>
           </div>
         )}
