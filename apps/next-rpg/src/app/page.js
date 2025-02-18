@@ -77,6 +77,14 @@ export default function Home() {
     });
   }
 
+  function getClass(entity) {
+    return classes.find( (item) => item.slug === entity.characterClass )
+  }
+
+  function getSpecies(entity) {
+    return species.find( (item) => item.slug === entity.species )
+  }
+
   function createCharacter(formData) {
     const name = formData.get("name");
     const species = formData.get("species");
@@ -104,10 +112,10 @@ export default function Home() {
                 Name: <span>{player.name}</span>
               </div>
               <div>
-                Species: <span>{player.species}</span>
+                Species: <span>{getSpecies(player).name}</span>
               </div>
               <div>
-                Class: <span>{player.characterClass}</span>
+                Class: <span>{getClass(player).name}</span>
               </div>
             </div>
             <div>
@@ -127,8 +135,8 @@ export default function Home() {
             </div>
             <div>
               <h2>Debug</h2>
-              <button onClick={() => subtractHealth(1)}>Subtract Health</button>
-              <button onClick={() => addHealth(1)}>Add Health</button>
+              <button onClick={() => subtractHealth(1, player)}>Subtract Player Health</button>
+              <button onClick={() => addHealth(1, player)}>Add Player Health</button>
             </div>
           </div>
         )}
