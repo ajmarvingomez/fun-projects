@@ -50,29 +50,29 @@ export default function Home() {
   const [player, setPlayer] = useState(null);
   const [openForm, setOpenForm] = useState(false);
 
-  function addHealth(number) {
-    let newPlayer = {
+  function addPlayerHealth(number) {
+    let updatedPlayer = {
       ...player,
     };
-    let newHP = newPlayer.hp + number;
-    if (newHP > newPlayer.maxHP) {
-      newHP = newPlayer.maxHP;
+    let newHP = updatedPlayer.hp + number;
+    if (newHP > updatedPlayer.maxHP) {
+      newHP = updatedPlayer.maxHP;
     }
 
-    newPlayer.hp = newHP;
-    setPlayer(newPlayer);
+    updatedPlayer.hp = newHP;
+    setPlayer(updatedPlayer);
   }
 
-  function subtractHealth(number) {
-    let newPlayer = { ...player };
-    let newHP = newPlayer.hp - number;
+  function subtractPlayerHealth(number) {
+    let updatedPlayer = { ...player };
+    let newHP = updatedPlayer.hp - number;
     if (newHP < 0) {
       newHP = 0;
     }
 
-    newPlayer.hp = newHP;
+    updatedPlayer.hp = newHP;
     setPlayer({
-      ...newPlayer,
+      ...updatedPlayer,
       hp: newHP,
     });
   }
@@ -135,8 +135,8 @@ export default function Home() {
             </div>
             <div>
               <h2>Debug</h2>
-              <button onClick={() => subtractHealth(1, player)}>Subtract Player Health</button>
-              <button onClick={() => addHealth(1, player)}>Add Player Health</button>
+              <button onClick={() => subtractPlayerHealth(1, player)}>Subtract Player Health</button>
+              <button onClick={() => addPlayerHealth(1, player)}>Add Player Health</button>
             </div>
           </div>
         )}
