@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import styles from "./page.module.css";
-
+import Image from "next/image";
 const species = [
   {
     slug: "human",
@@ -49,6 +49,34 @@ function Select({ id, title, list }) {
 export default function Home() {
   const [player, setPlayer] = useState(null);
   const [openForm, setOpenForm] = useState(false);
+
+  function addHealth(number) {
+    let newPlayer = {
+      ...player
+    }
+    let newHP = newPlayer.hp + number
+    if( newHP > newPlayer.maxHP ) {
+      newHP = newPlayer.maxHP
+    }
+
+    newPlayer.hp = newHP
+    setPlayer(newPlayer)
+  }
+
+  function subtractHealth(number) {
+
+    let newPlayer = {...player}
+    let newHP = newPlayer.hp - number
+    if( newHP < 0 ) {
+      newHP = 0
+    }
+
+    newPlayer.hp = newHP
+    setPlayer({
+      ...newPlayer, hp: newHP
+    })
+  }
+
   function createCharacter(formData) {
     const name = formData.get("name");
     const species = formData.get("species");
@@ -71,6 +99,7 @@ export default function Home() {
         {player != null && (
           <div>
             <div>
+              <h2>Character</h2>
               <div>
                 Name: <span>{player.name}</span>
               </div>
@@ -83,9 +112,21 @@ export default function Home() {
             </div>
             <div>
               <div>
-                HP: <span>{player.hp}</span> <span>/</span>
+                {<Image style={
+                  {"filter": "invert(1)"}
+                } width={10} height={10} src='/icons/health-normal.svg' alt="" />} HP: <span>{player.hp}</span> <span>/</span>
                 <span>{player.maxHP}</span>
               </div>
+            </div>
+            <div>
+              <h2>Debug</h2>
+              <button onClick={
+                () => subtractHealth(1)
+              } >Subtract Health</button>
+              <button onClick={
+                () => addHealth(1)
+              }>Add Health</button>
+
             </div>
           </div>
         )}
