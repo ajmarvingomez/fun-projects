@@ -186,9 +186,9 @@ export default function Home() {
 
   function hpColor(entity) {
     const { hp, maxHP } = entity;
-    if( .3 > (hp / maxHP) ) return 'red'
-    if( hp < maxHP ) return 'orange'
-    if( hp === maxHP ) return 'green'
+    if (0.3 > hp / maxHP) return "red";
+    if (hp < maxHP) return "orange";
+    if (hp === maxHP) return "green";
   }
   return (
     <div className={styles.page}>
