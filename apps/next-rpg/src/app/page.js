@@ -20,6 +20,13 @@ const classes = [
   },
 ];
 
+const mapHeight = 10;
+const mapWidth = 10;
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
 /**
  * Find class of entity
  * @param {object} entity
@@ -70,11 +77,7 @@ export default function Home() {
   const [player, setPlayer] = useState(null);
   const [openForm, setOpenForm] = useState(false);
 
-  const [map, setMap] = useState([
-    {
-      coordinates: "0,0",
-    },
-  ]);
+  const [map, setMap] = useState(() => generateMap(mapWidth, mapHeight));
 
   /**
    * Generate a new Map
@@ -82,7 +85,7 @@ export default function Home() {
    * @param {int} width
    * @param {array} map
    */
-  function generateMap(height, width, map) {
+  function generateMap(height, width) {
     let newMap = [];
     for (let x = 0; x < width; x++) {
       for (let y = 0; y < height; y++) {
@@ -91,9 +94,24 @@ export default function Home() {
         });
       }
     }
-    console.log(newMap);
-    setMap(newMap);
+    return newMap;
   }
+
+  function getMapCoordinates(x, y, map) {
+    let coordinate = map.find(
+      (coordinates) => coordinates.coordinates === `${x},${y}`,
+    );
+    return coordinate;
+  }
+
+  function getPlayerCoordinates(coordinates) {
+    let splitCoordinates = coordinates.split(",");
+    let x = splitCoordinates[0];
+    let y = splitCoordinates[1];
+    console.log(getMapCoordinates(x, y, map));
+    return getMapCoordinates(x, y, map);
+  }
+
   /**
    * Add health to player
    * @param {int} number
@@ -141,6 +159,7 @@ export default function Home() {
       characterClass: _class,
       hp: 10,
       maxHP: 10,
+      coordinates: `${getRandomInt(mapWidth)},${getRandomInt(mapHeight)}`
     });
   }
   return (
@@ -176,6 +195,9 @@ export default function Home() {
                 HP: <span>{player.hp}</span> <span>/</span>
                 <span>{player.maxHP}</span>
               </div>
+              <div>
+                Position: <span>{player.coordinates}</span>
+              </div>
             </div>
             <div>
               <h2>Debug</h2>
@@ -193,6 +215,8 @@ export default function Home() {
                 <button onClick={() => generateMap(10, 10, map)}>
                   Generate Map
                 </button>
+                <button onClick={() => getMapCoordinates(1,0,map)} > Get Coordinates</button>
+                <button onClick={() => getPlayerCoordinates(player.coordinates)}>Get Player Coordinates</button>
               </div>
             </div>
           </div>
