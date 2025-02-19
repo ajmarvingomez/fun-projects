@@ -20,9 +20,21 @@ const classes = [
   },
 ];
 
+/**
+ * Find class of entity
+ * @param {object} entity
+ * @returns characterClass
+ */
+
 function getClass(entity) {
   return classes.find((item) => item.slug === entity.characterClass);
 }
+
+/**
+ * Find species of entity
+ * @param {object} entity
+ * @returns characterClass
+ */
 
 function getSpecies(entity) {
   return species.find((item) => item.slug === entity.species);
@@ -58,6 +70,10 @@ export default function Home() {
   const [player, setPlayer] = useState(null);
   const [openForm, setOpenForm] = useState(false);
 
+  /**
+   * Add health to player
+   * @param {int} number
+   */
   function addPlayerHealth(number) {
     let updatedPlayer = {
       ...player,
@@ -71,6 +87,10 @@ export default function Home() {
     setPlayer(updatedPlayer);
   }
 
+  /**
+   * Subtract health from player
+   * @param {int} number
+   */
   function subtractPlayerHealth(number) {
     let updatedPlayer = { ...player };
     let newHP = updatedPlayer.hp - number;
