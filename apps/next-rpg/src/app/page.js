@@ -128,7 +128,10 @@ export default function Home() {
     let splitCoordinates = coordinates.split(",");
     let x = splitCoordinates[0];
     let y = splitCoordinates[1];
-    console.log(getMapCoordinates(x, y, map));
+    if(debug === true) {
+      console.log(getMapCoordinates(x, y, map));
+    }
+
     return getMapCoordinates(x, y, map);
   }
 
@@ -171,7 +174,10 @@ export default function Home() {
     const name = formData.get("name");
     const species = formData.get("species");
     const _class = formData.get("class");
-    // console.log(formData);
+    if(debug === true) {
+      console.log(formData);
+    }
+
     setPlayer({
       ...player,
       name: name,
@@ -219,7 +225,7 @@ export default function Home() {
                 Position: <span>{player.coordinates}</span>
               </div>
             </div>
-            {process.env.NODE_ENV === "development" && (
+            {debug === true && (
               <div>
                 <h2>Debug</h2>
                 <div>
