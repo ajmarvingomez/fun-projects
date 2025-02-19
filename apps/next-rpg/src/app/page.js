@@ -1,7 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import Image from "next/image";
+
+const debug = process.env.NODE_ENV === "development" ? true : false
+
 const species = [
   {
     slug: "human",
@@ -75,6 +78,23 @@ function Select({ id, title, list }) {
 
 export default function Home() {
   const [player, setPlayer] = useState(null);
+
+  useEffect( () => {
+    if(player === null) return
+    window.localStorage.setItem('player', JSON.stringify(player))
+  }, [player] )
+
+  function loadGame() {
+    if(!window) return
+    let player = window.localStorage.getItem('player')
+    if(debug === true) {
+      console.log(player)
+    }
+
+    if(player === null) return
+    setPlayer(JSON.parse(player))
+  }
+
   const [openForm, setOpenForm] = useState(false);
 
   const [map, setMap] = useState(() => generateMap(mapWidth, mapHeight));
@@ -231,9 +251,14 @@ export default function Home() {
           </div>
         )}
         {player === null && openForm == false && (
-          <button onClick={() => setOpenForm(!openForm)}>
-            Create Character
-          </button>
+          <>
+            <button onClick={() => {setOpenForm(!openForm)}}>
+              Start Game
+            </button>
+            <button onClick={() => {
+              loadGame()
+            }}>Load Game</button>
+          </>
         )}
         {openForm == true && player == null && (
           <form action={createCharacter}>
