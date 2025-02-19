@@ -70,6 +70,30 @@ export default function Home() {
   const [player, setPlayer] = useState(null);
   const [openForm, setOpenForm] = useState(false);
 
+  const [map, setMap] = useState([
+    {
+      coordinates: "0,0",
+    },
+  ]);
+
+  /**
+   * Generate a new Map
+   * @param {int} height
+   * @param {int} width
+   * @param {array} map
+   */
+  function generateMap(height, width, map) {
+    let newMap = [];
+    for (let x = 0; x < width; x++) {
+      for (let y = 0; y < height; y++) {
+        newMap.push({
+          coordinates: `${x},${y}`,
+        });
+      }
+    }
+    console.log(newMap);
+    setMap(newMap);
+  }
   /**
    * Add health to player
    * @param {int} number
@@ -104,8 +128,6 @@ export default function Home() {
       hp: newHP,
     });
   }
-
-
 
   function createCharacter(formData) {
     const name = formData.get("name");
@@ -157,12 +179,21 @@ export default function Home() {
             </div>
             <div>
               <h2>Debug</h2>
-              <button onClick={() => subtractPlayerHealth(1, player)}>
-                Subtract Player Health
-              </button>
-              <button onClick={() => addPlayerHealth(1, player)}>
-                Add Player Health
-              </button>
+              <div>
+                <h3>Player Commands</h3>
+                <button onClick={() => subtractPlayerHealth(1, player)}>
+                  Subtract Player Health
+                </button>
+                <button onClick={() => addPlayerHealth(1, player)}>
+                  Add Player Health
+                </button>
+              </div>
+              <div>
+                <h3>Map Commands</h3>
+                <button onClick={() => generateMap(10, 10, map)}>
+                  Generate Map
+                </button>
+              </div>
             </div>
           </div>
         )}
