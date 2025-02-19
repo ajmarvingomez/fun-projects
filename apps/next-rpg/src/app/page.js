@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import Image from "next/image";
-
+import { debugConsoleLog } from "@/utils/debugConsoleLog";
 const debug = process.env.NODE_ENV === "development" ? true : false
 
 const species = [
@@ -82,15 +82,13 @@ export default function Home() {
   useEffect( () => {
     if(player === null) return
     window.localStorage.setItem('player', JSON.stringify(player))
+    debugConsoleLog(`player set to ${window.localStorage.getItem('player')}`)
   }, [player] )
 
   function loadGame() {
     if(!window) return
     let player = window.localStorage.getItem('player')
-    if(debug === true) {
-      console.log(player)
-    }
-
+    debugConsoleLog(`Player found: ${player}`)
     if(player === null) return
     setPlayer(JSON.parse(player))
   }
@@ -128,10 +126,7 @@ export default function Home() {
     let splitCoordinates = coordinates.split(",");
     let x = splitCoordinates[0];
     let y = splitCoordinates[1];
-    if(debug === true) {
-      console.log(getMapCoordinates(x, y, map));
-    }
-
+    debugConsoleLog(`${player.name} at ${JSON.stringify(getMapCoordinates(x, y, map))}`)
     return getMapCoordinates(x, y, map);
   }
 
@@ -149,7 +144,8 @@ export default function Home() {
     }
 
     updatedPlayer.hp = newHP;
-    setPlayer(updatedPlayer);
+    debugConsoleLog(`hp set to: ${newHP}`)
+    setPlayer({...updatedPlayer});
   }
 
   /**
@@ -162,11 +158,10 @@ export default function Home() {
     if (newHP < 0) {
       newHP = 0;
     }
-
+    debugConsoleLog(`hp set to: ${newHP}`)
     updatedPlayer.hp = newHP;
     setPlayer({
-      ...updatedPlayer,
-      hp: newHP,
+      ...updatedPlayer
     });
   }
 
@@ -174,9 +169,7 @@ export default function Home() {
     const name = formData.get("name");
     const species = formData.get("species");
     const _class = formData.get("class");
-    if(debug === true) {
-      console.log(formData);
-    }
+    debugConsoleLog(`Character Created: ${JSON.stringify(formData)}`)
 
     setPlayer({
       ...player,
