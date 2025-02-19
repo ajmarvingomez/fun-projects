@@ -20,6 +20,14 @@ const classes = [
   },
 ];
 
+function getClass(entity) {
+  return classes.find((item) => item.slug === entity.characterClass);
+}
+
+function getSpecies(entity) {
+  return species.find((item) => item.slug === entity.species);
+}
+
 function Input({ id, title }) {
   return (
     <div>
@@ -77,13 +85,7 @@ export default function Home() {
     });
   }
 
-  function getClass(entity) {
-    return classes.find((item) => item.slug === entity.characterClass);
-  }
 
-  function getSpecies(entity) {
-    return species.find((item) => item.slug === entity.species);
-  }
 
   function createCharacter(formData) {
     const name = formData.get("name");
