@@ -159,7 +159,7 @@ export default function Home() {
       characterClass: _class,
       hp: 10,
       maxHP: 10,
-      coordinates: `${getRandomInt(mapWidth)},${getRandomInt(mapHeight)}`
+      coordinates: `${getRandomInt(mapWidth)},${getRandomInt(mapHeight)}`,
     });
   }
   return (
@@ -199,26 +199,35 @@ export default function Home() {
                 Position: <span>{player.coordinates}</span>
               </div>
             </div>
-            <div>
-              <h2>Debug</h2>
+            {process.env.NODE_ENV === "development" && (
               <div>
-                <h3>Player Commands</h3>
-                <button onClick={() => subtractPlayerHealth(1, player)}>
-                  Subtract Player Health
-                </button>
-                <button onClick={() => addPlayerHealth(1, player)}>
-                  Add Player Health
-                </button>
+                <h2>Debug</h2>
+                <div>
+                  <h3>Player Commands</h3>
+                  <button onClick={() => subtractPlayerHealth(1, player)}>
+                    Subtract Player Health
+                  </button>
+                  <button onClick={() => addPlayerHealth(1, player)}>
+                    Add Player Health
+                  </button>
+                </div>
+                <div>
+                  <h3>Map Commands</h3>
+                  <button onClick={() => generateMap(mapWidth, mapHeight)}>
+                    Generate Map
+                  </button>
+                  <button onClick={() => getMapCoordinates(1, 0, map)}>
+                    {" "}
+                    Get Coordinates
+                  </button>
+                  <button
+                    onClick={() => getPlayerCoordinates(player.coordinates)}
+                  >
+                    Get Player Coordinates
+                  </button>
+                </div>
               </div>
-              <div>
-                <h3>Map Commands</h3>
-                <button onClick={() => generateMap(10, 10, map)}>
-                  Generate Map
-                </button>
-                <button onClick={() => getMapCoordinates(1,0,map)} > Get Coordinates</button>
-                <button onClick={() => getPlayerCoordinates(player.coordinates)}>Get Player Coordinates</button>
-              </div>
-            </div>
+            )}
           </div>
         )}
         {player === null && openForm == false && (
