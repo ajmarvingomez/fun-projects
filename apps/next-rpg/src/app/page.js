@@ -183,6 +183,13 @@ export default function Home() {
       coordinates: `${getRandomInt(mapWidth)},${getRandomInt(mapHeight)}`,
     });
   }
+
+  function hpColor(entity) {
+    const { hp, maxHP } = entity;
+    if( .3 > (hp / maxHP) ) return 'red'
+    if( hp < maxHP ) return 'orange'
+    if( hp === maxHP ) return 'green'
+  }
   return (
     <div className={styles.page}>
       <header></header>
@@ -206,11 +213,13 @@ export default function Home() {
               <div>
                 {
                   <Image
-                    style={{ filter: "invert(1)" }}
-                    width={10}
-                    height={10}
+                    style={{
+                      backgroundColor: hpColor(player),
+                    }}
+                    width={16}
+                    height={16}
                     src="/icons/health-normal.svg"
-                    alt=""
+                    alt={`${player.hp} / ${player.maxHP}`}
                   />
                 }{" "}
                 HP: <span>{player.hp}</span> <span>/</span>
