@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import Image from "next/image";
 import { debugConsoleLog } from "@/utils/debugConsoleLog";
-const debug = process.env.NODE_ENV === "development" ? true : false
+const debug = process.env.NODE_ENV === "development" ? true : false;
 
 const species = [
   {
@@ -79,18 +79,18 @@ function Select({ id, title, list }) {
 export default function Home() {
   const [player, setPlayer] = useState(null);
 
-  useEffect( () => {
-    if(player === null) return
-    window.localStorage.setItem('player', JSON.stringify(player))
-    debugConsoleLog(`player set to ${window.localStorage.getItem('player')}`)
-  }, [player] )
+  useEffect(() => {
+    if (player === null) return;
+    window.localStorage.setItem("player", JSON.stringify(player));
+    debugConsoleLog(`player set to ${window.localStorage.getItem("player")}`);
+  }, [player]);
 
   function loadGame() {
-    if(!window) return
-    let player = window.localStorage.getItem('player')
-    debugConsoleLog(`Player found: ${player}`)
-    if(player === null) return
-    setPlayer(JSON.parse(player))
+    if (!window) return;
+    let player = window.localStorage.getItem("player");
+    debugConsoleLog(`Player found: ${player}`);
+    if (player === null) return;
+    setPlayer(JSON.parse(player));
   }
 
   const [openForm, setOpenForm] = useState(false);
@@ -126,7 +126,9 @@ export default function Home() {
     let splitCoordinates = coordinates.split(",");
     let x = splitCoordinates[0];
     let y = splitCoordinates[1];
-    debugConsoleLog(`${player.name} at ${JSON.stringify(getMapCoordinates(x, y, map))}`)
+    debugConsoleLog(
+      `${player.name} at ${JSON.stringify(getMapCoordinates(x, y, map))}`,
+    );
     return getMapCoordinates(x, y, map);
   }
 
@@ -144,8 +146,8 @@ export default function Home() {
     }
 
     updatedPlayer.hp = newHP;
-    debugConsoleLog(`hp set to: ${newHP}`)
-    setPlayer({...updatedPlayer});
+    debugConsoleLog(`hp set to: ${newHP}`);
+    setPlayer({ ...updatedPlayer });
   }
 
   /**
@@ -158,10 +160,10 @@ export default function Home() {
     if (newHP < 0) {
       newHP = 0;
     }
-    debugConsoleLog(`hp set to: ${newHP}`)
+    debugConsoleLog(`hp set to: ${newHP}`);
     updatedPlayer.hp = newHP;
     setPlayer({
-      ...updatedPlayer
+      ...updatedPlayer,
     });
   }
 
@@ -169,7 +171,7 @@ export default function Home() {
     const name = formData.get("name");
     const species = formData.get("species");
     const _class = formData.get("class");
-    debugConsoleLog(`Character Created: ${JSON.stringify(formData)}`)
+    debugConsoleLog(`Character Created: ${JSON.stringify(formData)}`);
 
     setPlayer({
       ...player,
@@ -251,12 +253,20 @@ export default function Home() {
         )}
         {player === null && openForm == false && (
           <>
-            <button onClick={() => {setOpenForm(!openForm)}}>
+            <button
+              onClick={() => {
+                setOpenForm(!openForm);
+              }}
+            >
               Start Game
             </button>
-            <button onClick={() => {
-              loadGame()
-            }}>Load Game</button>
+            <button
+              onClick={() => {
+                loadGame();
+              }}
+            >
+              Load Game
+            </button>
           </>
         )}
         {openForm == true && player == null && (
