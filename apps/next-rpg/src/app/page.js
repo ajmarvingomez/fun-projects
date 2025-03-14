@@ -7,35 +7,11 @@ const debug = process.env.NODE_ENV === "development" ? true : false;
 import { generateMap } from "@/utils/generateMap";
 import { species } from "@/definitions/species";
 import { classes } from "@/definitions/classes";
-
-
-
+import { getRandomInt } from "@/utils/getRandomInt";
+import { getClass } from "@/utils/getClass";
+import { getSpecies } from "@/utils/getSpecies";
 const mapHeight = 10;
 const mapWidth = 10;
-
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
-
-/**
- * Find class of entity
- * @param {object} entity
- * @returns characterClass
- */
-
-function getClass(entity) {
-  return classes.find((item) => item.slug === entity.characterClass);
-}
-
-/**
- * Find species of entity
- * @param {object} entity
- * @returns characterClass
- */
-
-function getSpecies(entity) {
-  return species.find((item) => item.slug === entity.species);
-}
 
 function Input({ id, title }) {
   return (
