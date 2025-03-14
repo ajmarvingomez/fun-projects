@@ -1,3 +1,4 @@
+import { species } from "@/definitions/species";
 /**
  * Find species of entity
  * @param {object} entity
