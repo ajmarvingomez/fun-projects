@@ -10,17 +10,11 @@ import { classes } from "@/definitions/classes";
 import { getRandomInt } from "@/utils/getRandomInt";
 import { getClass } from "@/utils/getClass";
 import { getSpecies } from "@/utils/getSpecies";
+import { Input } from "@/components/Input";
 const mapHeight = 10;
 const mapWidth = 10;
 
-function Input({ id, title }) {
-  return (
-    <div>
-      <label htmlFor={id}>{title}</label>
-      <input id={id} name={id} />
-    </div>
-  );
-}
+
 
 function Select({ id, title, list }) {
   return (
