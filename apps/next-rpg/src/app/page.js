@@ -4,24 +4,11 @@ import styles from "./page.module.css";
 import Image from "next/image";
 import { debugConsoleLog } from "@/utils/debugConsoleLog";
 const debug = process.env.NODE_ENV === "development" ? true : false;
+import { generateMap } from "@/utils/generateMap";
+import { species } from "@/definitions/species";
+import { classes } from "@/definitions/classes";
 
-const species = [
-  {
-    slug: "human",
-    name: "Human",
-  },
-  {
-    slug: "elf",
-    name: "Elf",
-  },
-];
 
-const classes = [
-  {
-    slug: "fighter",
-    name: "Fighter",
-  },
-];
 
 const mapHeight = 10;
 const mapWidth = 10;
@@ -97,23 +84,7 @@ export default function Home() {
 
   const [map, setMap] = useState(() => generateMap(mapWidth, mapHeight));
 
-  /**
-   * Generate a new Map
-   * @param {int} height
-   * @param {int} width
-   * @param {array} map
-   */
-  function generateMap(height, width) {
-    let newMap = [];
-    for (let x = 0; x < width; x++) {
-      for (let y = 0; y < height; y++) {
-        newMap.push({
-          coordinates: `${x},${y}`,
-        });
-      }
-    }
-    return newMap;
-  }
+
 
   function getMapCoordinates(x, y, map) {
     let coordinate = map.find(
