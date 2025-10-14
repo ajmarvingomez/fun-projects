@@ -12,6 +12,7 @@ import { getClass } from "@/utils/getClass";
 import { getSpecies } from "@/utils/getSpecies";
 import { Input } from "@/components/Input";
 import { Select } from "@/components/Select";
+import { Debug } from "@/components/Debug";
 const mapHeight = 10;
 const mapWidth = 10;
 
@@ -35,47 +36,6 @@ export default function Home() {
   const [openForm, setOpenForm] = useState(false);
 
   const [map, setMap] = useState(() => generateMap(mapWidth, mapHeight));
-
-
-
-
-
-
-
-  /**
-   * Add health to player
-   * @param {int} number
-   */
-  function addPlayerHealth(number) {
-    let updatedPlayer = {
-      ...player,
-    };
-    let newHP = updatedPlayer.hp + number;
-    if (newHP > updatedPlayer.maxHP) {
-      newHP = updatedPlayer.maxHP;
-    }
-
-    updatedPlayer.hp = newHP;
-    debugConsoleLog(`hp set to: ${newHP}`);
-    setPlayer({ ...updatedPlayer });
-  }
-
-  /**
-   * Subtract health from player
-   * @param {int} number
-   */
-  function subtractPlayerHealth(number) {
-    let updatedPlayer = { ...player };
-    let newHP = updatedPlayer.hp - number;
-    if (newHP < 0) {
-      newHP = 0;
-    }
-    debugConsoleLog(`hp set to: ${newHP}`);
-    updatedPlayer.hp = newHP;
-    setPlayer({
-      ...updatedPlayer,
-    });
-  }
 
   function createCharacter(formData) {
     const name = formData.get("name");
@@ -140,33 +100,9 @@ export default function Home() {
               </div>
             </div>
             {debug === true && (
-              <div>
-                <h2>Debug</h2>
-                <div>
-                  <h3>Player Commands</h3>
-                  <button onClick={() => subtractPlayerHealth(1, player)}>
-                    Subtract Player Health
-                  </button>
-                  <button onClick={() => addPlayerHealth(1, player)}>
-                    Add Player Health
-                  </button>
-                </div>
-                <div>
-                  <h3>Map Commands</h3>
-                  <button onClick={() => generateMap(mapWidth, mapHeight)}>
-                    Generate Map
-                  </button>
-                  <button onClick={() => getMapCoordinates(1, 0, map)}>
-                    {" "}
-                    Get Coordinates
-                  </button>
-                  <button
-                    onClick={() => getPlayerCoordinates(player.coordinates)}
-                  >
-                    Get Player Coordinates
-                  </button>
-                </div>
-              </div>
+              <>
+                <Debug {...{ setMap, setPlayer, map, player }} />
+              </>
             )}
           </div>
         )}
