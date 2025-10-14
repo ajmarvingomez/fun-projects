@@ -6,5 +6,5 @@ import { classes } from "@/definitions/classes";
  */
 
 export function getClass(entity) {
-    return classes.find((item) => item.slug === entity.characterClass);
-  }
+  return classes.find((item) => item.slug === entity.characterClass);
+}

@@ -1,6 +1,6 @@
 export const classes = [
-    {
-      slug: "fighter",
-      name: "Fighter",
-    },
-  ];
+  {
+    slug: "fighter",
+    name: "Fighter",
+  },
+];

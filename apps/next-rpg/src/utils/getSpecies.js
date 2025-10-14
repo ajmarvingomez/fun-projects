@@ -6,5 +6,5 @@ import { species } from "@/definitions/species";
  */
 
 export function getSpecies(entity) {
-    return species.find((item) => item.slug === entity.species);
-  }
+  return species.find((item) => item.slug === entity.species);
+}

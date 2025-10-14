@@ -1,10 +1,10 @@
 export const species = [
-    {
-      slug: "human",
-      name: "Human",
-    },
-    {
-      slug: "elf",
-      name: "Elf",
-    },
-  ];
+  {
+    slug: "human",
+    name: "Human",
+  },
+  {
+    slug: "elf",
+    name: "Elf",
+  },
+];
