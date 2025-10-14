@@ -1,5 +1,22 @@
 import { generateMap } from "@/utils/generateMap";
-export function Debug({setMap, ...props}) {
+import { debugConsoleLog } from "@/utils/debugConsoleLog";
+
+export function Debug({setMap, map, player, setPlayer}) {
+    function getMapCoordinates(x, y, map) {
+    let coordinate = map.find(
+      (coordinates) => coordinates.coordinates === `${x},${y}`,
+    );
+    return coordinate;
+  }
+  function getPlayerCoordinates(coordinates) {
+    let splitCoordinates = coordinates.split(",");
+    let x = splitCoordinates[0];
+    let y = splitCoordinates[1];
+    debugConsoleLog(
+      `${player.name} at ${JSON.stringify(getMapCoordinates(x, y, map))}`,
+    );
+    return getMapCoordinates(x, y, map);
+  }
     return <div>
                     <h2>Debug</h2>
                     <div>

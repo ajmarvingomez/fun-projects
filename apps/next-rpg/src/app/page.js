@@ -12,8 +12,8 @@ import { getClass } from "@/utils/getClass";
 import { getSpecies } from "@/utils/getSpecies";
 import { Input } from "@/components/Input";
 import { Select } from "@/components/Select";
-import { Debug } from "@/components/Debug";
-import { mapHeight, mapWidth } from "@/definitions/map";
+const mapHeight = 10;
+const mapWidth = 10;
 
 export default function Home() {
   const [player, setPlayer] = useState(null);
@@ -38,22 +38,9 @@ export default function Home() {
 
 
 
-  function getMapCoordinates(x, y, map) {
-    let coordinate = map.find(
-      (coordinates) => coordinates.coordinates === `${x},${y}`,
-    );
-    return coordinate;
-  }
 
-  function getPlayerCoordinates(coordinates) {
-    let splitCoordinates = coordinates.split(",");
-    let x = splitCoordinates[0];
-    let y = splitCoordinates[1];
-    debugConsoleLog(
-      `${player.name} at ${JSON.stringify(getMapCoordinates(x, y, map))}`,
-    );
-    return getMapCoordinates(x, y, map);
-  }
+
+
 
   /**
    * Add health to player
@@ -152,7 +139,35 @@ export default function Home() {
                 Position: <span>{player.coordinates}</span>
               </div>
             </div>
-            {debug === true && <Debug setMap={setMap} />}
+            {debug === true && (
+              <div>
+                <h2>Debug</h2>
+                <div>
+                  <h3>Player Commands</h3>
+                  <button onClick={() => subtractPlayerHealth(1, player)}>
+                    Subtract Player Health
+                  </button>
+                  <button onClick={() => addPlayerHealth(1, player)}>
+                    Add Player Health
+                  </button>
+                </div>
+                <div>
+                  <h3>Map Commands</h3>
+                  <button onClick={() => generateMap(mapWidth, mapHeight)}>
+                    Generate Map
+                  </button>
+                  <button onClick={() => getMapCoordinates(1, 0, map)}>
+                    {" "}
+                    Get Coordinates
+                  </button>
+                  <button
+                    onClick={() => getPlayerCoordinates(player.coordinates)}
+                  >
+                    Get Player Coordinates
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         )}
         {player === null && openForm == false && (
