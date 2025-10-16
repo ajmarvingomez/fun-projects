@@ -1,8 +1,9 @@
+import { debugConsoleLog } from "./debugConsoleLog";
 /**
  * Add health to player
  * @param {int} number
  */
-export function addPlayerHealth(number) {
+export function addPlayerHealth(number, player, setPlayer) {
   let updatedPlayer = {
     ...player,
   };
@@ -20,7 +21,7 @@ export function addPlayerHealth(number) {
  * Subtract health from player
  * @param {int} number
  */
-export function subtractPlayerHealth(number) {
+export function subtractPlayerHealth(number, player, setPlayer) {
   let updatedPlayer = { ...player };
   let newHP = updatedPlayer.hp - number;
   if (newHP < 0) {

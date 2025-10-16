@@ -22,10 +22,10 @@ export function Debug({ setMap, map, player, setPlayer }) {
       <h2>Debug</h2>
       <div>
         <h3>Player Commands</h3>
-        <button onClick={() => subtractPlayerHealth(1, player)}>
+        <button onClick={() => subtractPlayerHealth(1, player, setPlayer)}>
           Subtract Player Health
         </button>
-        <button onClick={() => addPlayerHealth(1, player)}>
+        <button onClick={() => addPlayerHealth(1, player, setPlayer)}>
           Add Player Health
         </button>
       </div>
