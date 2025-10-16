@@ -1,22 +1,10 @@
 import { generateMap } from "@/utils/generateMap";
 import { debugConsoleLog } from "@/utils/debugConsoleLog";
-import { addPlayerHealth, subtractPlayerHealth } from "@/utils/player";
+import { addPlayerHealth, subtractPlayerHealth, getPlayerCoordinates } from "@/utils/player";
+import { getMapCoordinates } from "@/utils/getMapCoordinates";
 export function Debug({ setMap, map, player, setPlayer }) {
-  function getMapCoordinates(x, y, map) {
-    let coordinate = map.find(
-      (coordinates) => coordinates.coordinates === `${x},${y}`,
-    );
-    return coordinate;
-  }
-  function getPlayerCoordinates(coordinates) {
-    let splitCoordinates = coordinates.split(",");
-    let x = splitCoordinates[0];
-    let y = splitCoordinates[1];
-    debugConsoleLog(
-      `${player.name} at ${JSON.stringify(getMapCoordinates(x, y, map))}`,
-    );
-    return getMapCoordinates(x, y, map);
-  }
+
+
   return (
     <div>
       <h2>Debug</h2>
@@ -36,7 +24,7 @@ export function Debug({ setMap, map, player, setPlayer }) {
           {" "}
           Get Coordinates
         </button>
-        <button onClick={() => getPlayerCoordinates(player.coordinates)}>
+        <button onClick={() => getPlayerCoordinates(player, map)}>
           Get Player Coordinates
         </button>
       </div>
