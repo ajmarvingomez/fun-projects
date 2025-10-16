@@ -1,10 +1,12 @@
 import { generateMap } from "@/utils/generateMap";
 import { debugConsoleLog } from "@/utils/debugConsoleLog";
-import { addPlayerHealth, subtractPlayerHealth, getPlayerCoordinates } from "@/utils/player";
+import {
+  addPlayerHealth,
+  subtractPlayerHealth,
+  getPlayerCoordinates,
+} from "@/utils/player";
 import { getMapCoordinates } from "@/utils/getMapCoordinates";
 export function Debug({ setMap, map, player, setPlayer }) {
-
-
   return (
     <div>
       <h2>Debug</h2>

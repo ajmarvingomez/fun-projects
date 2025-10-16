@@ -100,7 +100,7 @@ export default function Home() {
                 Position: <span>{player.coordinates}</span>
               </div>
             </div>
-            <Movement {...{player, setPlayer, map, setMap}} />
+            <Movement {...{ player, setPlayer, map, setMap }} />
             {debug === true && (
               <>
                 <Debug {...{ setMap, setPlayer, map, player }} />

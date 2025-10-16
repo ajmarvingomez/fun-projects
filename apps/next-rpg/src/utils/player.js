@@ -37,32 +37,34 @@ export function subtractPlayerHealth(number, player, setPlayer) {
 }
 
 export function getPlayerCoordinates(player, map) {
-    if (!player) return null;
-    let coordinates = player.coordinates;
-    if (!coordinates) return null;
-    let splitCoordinates = coordinates.split(",");
-    let x = splitCoordinates[0];
-    let y = splitCoordinates[1];
-    debugConsoleLog(
-      `${player.name} at ${JSON.stringify(getMapCoordinates(x, y, map))}`,
-    );
-    return getMapCoordinates(x, y, map);
-  }
+  if (!player) return null;
+  let coordinates = player.coordinates;
+  if (!coordinates) return null;
+  let splitCoordinates = coordinates.split(",");
+  let x = splitCoordinates[0];
+  let y = splitCoordinates[1];
+  debugConsoleLog(
+    `${player.name} at ${JSON.stringify(getMapCoordinates(x, y, map))}`,
+  );
+  return getMapCoordinates(x, y, map);
+}
 
-  export function handlePlayerMovement(direction, player, setPlayer, map) {
-    let oldCoordinates = player.coordinates;
-    let splitCoordinates = oldCoordinates.split(",");
-    let x = parseInt(splitCoordinates[0]);
-    let y = parseInt(splitCoordinates[1]);
-    if (direction === "up") y = y - 1;
-    if (direction === "down") y = y + 1;
-    if (direction === "left") x = x - 1;
-    if (direction === "right") x = x + 1;
-    if (!player) return null;
-    debugConsoleLog(`Moving ${player.name} ${direction} from ${oldCoordinates} to ${x},${y}`);
-    if (!getMapCoordinates(x, y, map)) {
-        debugConsoleLog(`Can't move ${direction}, out of bounds`);
-        return;
-    }
-    setPlayer({...player, coordinates: `${x},${y}`});
+export function handlePlayerMovement(direction, player, setPlayer, map) {
+  let oldCoordinates = player.coordinates;
+  let splitCoordinates = oldCoordinates.split(",");
+  let x = parseInt(splitCoordinates[0]);
+  let y = parseInt(splitCoordinates[1]);
+  if (direction === "up") y = y - 1;
+  if (direction === "down") y = y + 1;
+  if (direction === "left") x = x - 1;
+  if (direction === "right") x = x + 1;
+  if (!player) return null;
+  debugConsoleLog(
+    `Moving ${player.name} ${direction} from ${oldCoordinates} to ${x},${y}`,
+  );
+  if (!getMapCoordinates(x, y, map)) {
+    debugConsoleLog(`Can't move ${direction}, out of bounds`);
+    return;
   }
+  setPlayer({ ...player, coordinates: `${x},${y}` });
+}
