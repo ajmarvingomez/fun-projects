@@ -48,3 +48,21 @@ export function getPlayerCoordinates(player, map) {
     );
     return getMapCoordinates(x, y, map);
   }
+
+  export function handlePlayerMovement(direction, player, setPlayer, map) {
+    let oldCoordinates = player.coordinates;
+    let splitCoordinates = oldCoordinates.split(",");
+    let x = parseInt(splitCoordinates[0]);
+    let y = parseInt(splitCoordinates[1]);
+    if (direction === "up") y = y - 1;
+    if (direction === "down") y = y + 1;
+    if (direction === "left") x = x - 1;
+    if (direction === "right") x = x + 1;
+    if (!player) return null;
+    debugConsoleLog(`Moving ${player.name} ${direction} from ${oldCoordinates} to ${x},${y}`);
+    if (!getMapCoordinates(x, y, map)) {
+        debugConsoleLog(`Can't move ${direction}, out of bounds`);
+        return;
+    }
+    setPlayer({...player, coordinates: `${x},${y}`});
+  }
