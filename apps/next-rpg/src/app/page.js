@@ -13,6 +13,7 @@ import { getSpecies } from "@/utils/getSpecies";
 import { Input } from "@/components/Input";
 import { Select } from "@/components/Select";
 import { Debug } from "@/components/Debug";
+import { Movement } from "@/components/Movement";
 const mapHeight = 10;
 const mapWidth = 10;
 
@@ -99,6 +100,7 @@ export default function Home() {
                 Position: <span>{player.coordinates}</span>
               </div>
             </div>
+            <Movement {...{player, setPlayer, map, setMap}} />
             {debug === true && (
               <>
                 <Debug {...{ setMap, setPlayer, map, player }} />
