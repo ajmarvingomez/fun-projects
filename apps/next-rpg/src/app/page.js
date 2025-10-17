@@ -37,7 +37,7 @@ export default function Home() {
 
   const [openForm, setOpenForm] = useState(false);
 
-  const [map, setMap] = useState(() => generateMap(mapWidth, mapHeight));
+  const [map, setMap] = useState(() => generateMap(mapWidth, mapHeight, terrainDefinitions));
 
   function createCharacter(formData) {
     const name = formData.get("name");
