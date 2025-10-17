@@ -1,6 +1,7 @@
 import { debugConsoleLog } from "./debugConsoleLog";
 import { getMapCoordinates } from "./getMapCoordinates";
-import { getTerrain } from "./getTerrain";
+import { getTerrain, getTerrainDefinition } from "./getTerrain";
+import { terrainDefinitions } from "@/definitions/map";
 /**
  * Add health to player
  * @param {int} number
@@ -74,6 +75,10 @@ export function handlePlayerMovement(direction, player, setPlayer, map) {
   );
   if (!getMapCoordinates(x, y, map)) {
     debugConsoleLog(`Can't move ${direction}, out of bounds`);
+    return;
+  }
+  if(getTerrainDefinition(getTerrain(x, y, map), terrainDefinitions).walkable === false) {
+    debugConsoleLog(`Can't move ${direction}, terrain not walkable`);
     return;
   }
   setPlayer({ ...player, coordinates: `${x},${y}` });
