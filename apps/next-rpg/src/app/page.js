@@ -14,8 +14,7 @@ import { Input } from "@/components/Input";
 import { Select } from "@/components/Select";
 import { Debug } from "@/components/Debug";
 import { Movement } from "@/components/Movement";
-const mapHeight = 10;
-const mapWidth = 10;
+import { mapHeight, mapWidth } from "@/definitions/map";
 
 export default function Home() {
   const [player, setPlayer] = useState(null);
