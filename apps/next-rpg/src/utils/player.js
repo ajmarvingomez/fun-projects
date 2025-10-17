@@ -1,6 +1,6 @@
 import { debugConsoleLog } from "./debugConsoleLog";
 import { getMapCoordinates } from "./getMapCoordinates";
-
+import { getTerrain } from "./getTerrain";
 /**
  * Add health to player
  * @param {int} number
@@ -47,6 +47,16 @@ export function getPlayerCoordinates(player, map) {
     `${player.name} at ${JSON.stringify(getMapCoordinates(x, y, map))}`,
   );
   return getMapCoordinates(x, y, map);
+}
+
+export function getTerrainAtPlayer(player, map) {
+    if (!player) return null;
+    let coordinates = player.coordinates;
+    if (!coordinates) return null;
+    let splitCoordinates = coordinates.split(",");
+    let x = splitCoordinates[0];
+    let y = splitCoordinates[1];
+    return getTerrain(x, y, map);
 }
 
 export function handlePlayerMovement(direction, player, setPlayer, map) {
