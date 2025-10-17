@@ -1,11 +1,13 @@
 import { generateMap } from "@/utils/generateMap";
-import { debugConsoleLog } from "@/utils/debugConsoleLog";
+// import { debugConsoleLog } from "@/utils/debugConsoleLog";
+import { getTerrain, getTerrainDefinition } from "@/utils/getTerrain";
 import {
   addPlayerHealth,
   subtractPlayerHealth,
   getPlayerCoordinates,
 } from "@/utils/player";
 import { getMapCoordinates } from "@/utils/getMapCoordinates";
+import { terrainDefinitions } from "@/definitions/map";
 export function Debug({ setMap, map, player, setPlayer }) {
   return (
     <div>
@@ -28,6 +30,12 @@ export function Debug({ setMap, map, player, setPlayer }) {
         </button>
         <button onClick={() => getPlayerCoordinates(player, map)}>
           Get Player Coordinates
+        </button>
+        <button onClick={() => getTerrain(1,0, map)}>
+          Get Terrain
+        </button>
+        <button onClick={() => getTerrainDefinition('grass', terrainDefinitions)}>
+          Get Terrain Definition
         </button>
       </div>
     </div>
