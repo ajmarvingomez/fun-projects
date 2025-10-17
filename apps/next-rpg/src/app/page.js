@@ -14,7 +14,9 @@ import { Input } from "@/components/Input";
 import { Select } from "@/components/Select";
 import { Debug } from "@/components/Debug";
 import { Movement } from "@/components/Movement";
-import { mapHeight, mapWidth } from "@/definitions/map";
+import { mapHeight, mapWidth, terrainDefinitions } from "@/definitions/map";
+import { getTerrainAtPlayer } from "@/utils/player";
+import { getTerrainDefinition } from "@/utils/getTerrain";
 
 export default function Home() {
   const [player, setPlayer] = useState(null);
@@ -97,6 +99,9 @@ export default function Home() {
               </div>
               <div>
                 Position: <span>{player.coordinates}</span>
+              </div>
+              <div>
+                Terrain: <span>{getTerrainDefinition(getTerrainAtPlayer(player, map), terrainDefinitions).name}</span>
               </div>
             </div>
             <Movement {...{ player, setPlayer, map, setMap }} />
