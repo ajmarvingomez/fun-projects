@@ -37,7 +37,9 @@ export default function Home() {
 
   const [openForm, setOpenForm] = useState(false);
 
-  const [map, setMap] = useState(() => generateMap(mapWidth, mapHeight, terrainDefinitions));
+  const [map, setMap] = useState(() =>
+    generateMap(mapWidth, mapHeight, terrainDefinitions),
+  );
 
   function createCharacter(formData) {
     const name = formData.get("name");
@@ -101,7 +103,15 @@ export default function Home() {
                 Position: <span>{player.coordinates}</span>
               </div>
               <div>
-                Terrain: <span>{getTerrainDefinition(getTerrainAtPlayer(player, map), terrainDefinitions).name}</span>
+                Terrain:{" "}
+                <span>
+                  {
+                    getTerrainDefinition(
+                      getTerrainAtPlayer(player, map),
+                      terrainDefinitions,
+                    ).name
+                  }
+                </span>
               </div>
             </div>
             <Movement {...{ player, setPlayer, map, setMap }} />

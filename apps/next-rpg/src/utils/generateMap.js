@@ -6,7 +6,11 @@ import { getRandomInt } from "./getRandomInt";
  * @param {int} width
  * @param {array} map
  */
-export function generateMap(height = mapHeight, width = mapWidth, terrainDefinitions) {
+export function generateMap(
+  height = mapHeight,
+  width = mapWidth,
+  terrainDefinitions,
+) {
   let newMap = [];
   for (let x = 0; x < width; x++) {
     for (let y = 0; y < height; y++) {
@@ -20,7 +24,6 @@ export function generateMap(height = mapHeight, width = mapWidth, terrainDefinit
   console.log(newMap);
   return newMap;
 }
-
 
 export function generateTerrain(terrainDefinitions) {
   let number = getRandomInt(terrainDefinitions.length);

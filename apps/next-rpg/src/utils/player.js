@@ -51,13 +51,13 @@ export function getPlayerCoordinates(player, map) {
 }
 
 export function getTerrainAtPlayer(player, map) {
-    if (!player) return null;
-    let coordinates = player.coordinates;
-    if (!coordinates) return null;
-    let splitCoordinates = coordinates.split(",");
-    let x = splitCoordinates[0];
-    let y = splitCoordinates[1];
-    return getTerrain(x, y, map);
+  if (!player) return null;
+  let coordinates = player.coordinates;
+  if (!coordinates) return null;
+  let splitCoordinates = coordinates.split(",");
+  let x = splitCoordinates[0];
+  let y = splitCoordinates[1];
+  return getTerrain(x, y, map);
 }
 
 export function handlePlayerMovement(direction, player, setPlayer, map) {
@@ -77,7 +77,10 @@ export function handlePlayerMovement(direction, player, setPlayer, map) {
     debugConsoleLog(`Can't move ${direction}, out of bounds`);
     return;
   }
-  if(getTerrainDefinition(getTerrain(x, y, map), terrainDefinitions).walkable === false) {
+  if (
+    getTerrainDefinition(getTerrain(x, y, map), terrainDefinitions).walkable ===
+    false
+  ) {
     debugConsoleLog(`Can't move ${direction}, terrain not walkable`);
     return;
   }
