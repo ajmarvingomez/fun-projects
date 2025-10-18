@@ -6,12 +6,13 @@ export const classes = [
   {
     slug: "mage",
     name: "Mage",
-  }, {
+  },
+  {
     slug: "rogue",
     name: "Rogue",
   },
   {
     slug: "cleric",
     name: "Cleric",
-  }
+  },
 ];
