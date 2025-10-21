@@ -1,3 +1,6 @@
+/**
+ * Character Classes
+ */
 export const classes = [
   {
     slug: "fighter",

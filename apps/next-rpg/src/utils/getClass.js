@@ -1,7 +1,7 @@
 import { classes } from "@/definitions/classes";
 /**
  * Find class of entity
- * @param {object} entity
+ * @param {Object} entity
  * @returns characterClass
  */
 

@@ -1,7 +1,7 @@
 import { species } from "@/definitions/species";
 /**
  * Find species of entity
- * @param {object} entity
+ * @param {Object} entity
  * @returns characterClass
  */
 

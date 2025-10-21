@@ -1,3 +1,7 @@
+/**
+ * Species definitions
+ * Each species has unique traits and attributes.
+ */
 export const species = [
   {
     slug: "human",

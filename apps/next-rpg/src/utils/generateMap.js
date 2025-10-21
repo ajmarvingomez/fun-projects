@@ -25,6 +25,11 @@ export function generateMap(
   return newMap;
 }
 
+/**
+ * Returns a random terrain slug from terrain definitions. Used to generate terrain for map.
+ * @param {array} terrainDefinitions
+ * @returns
+ */
 export function generateTerrain(terrainDefinitions) {
   let number = getRandomInt(terrainDefinitions.length);
   return terrainDefinitions[number].slug;

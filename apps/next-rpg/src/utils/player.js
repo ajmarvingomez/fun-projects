@@ -4,7 +4,7 @@ import { getTerrain, getTerrainDefinition } from "./getTerrain";
 import { terrainDefinitions } from "@/definitions/map";
 /**
  * Add health to player
- * @param {int} number
+ * @param {Number} number
  */
 export function addPlayerHealth(number, player, setPlayer) {
   let updatedPlayer = {
@@ -22,7 +22,7 @@ export function addPlayerHealth(number, player, setPlayer) {
 
 /**
  * Subtract health from player
- * @param {int} number
+ * @param {Number} number
  */
 export function subtractPlayerHealth(number, player, setPlayer) {
   let updatedPlayer = { ...player };
@@ -37,6 +37,13 @@ export function subtractPlayerHealth(number, player, setPlayer) {
   });
 }
 
+/**
+ *
+ * @param {Object} player
+ * @param {Array} map
+ * @returns
+ */
+
 export function getPlayerCoordinates(player, map) {
   if (!player) return null;
   let coordinates = player.coordinates;
@@ -49,7 +56,12 @@ export function getPlayerCoordinates(player, map) {
   );
   return getMapCoordinates(x, y, map);
 }
-
+/**
+ *
+ * @param {Object} player
+ * @param {Array} map
+ * @returns
+ */
 export function getTerrainAtPlayer(player, map) {
   if (!player) return null;
   let coordinates = player.coordinates;
@@ -59,6 +71,15 @@ export function getTerrainAtPlayer(player, map) {
   let y = splitCoordinates[1];
   return getTerrain(x, y, map);
 }
+
+/**
+ *
+ * @param {String} direction the direction to move
+ * @param {Object} player
+ * @param {Function} setPlayer
+ * @param {Array} map
+ * @returns
+ */
 
 export function handlePlayerMovement(direction, player, setPlayer, map) {
   let oldCoordinates = player.coordinates;

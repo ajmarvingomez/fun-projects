@@ -1,6 +1,13 @@
+/**
+ * Map Heights and Widths (by default)
+ */
 export const mapHeight = 10;
 export const mapWidth = 10;
 
+/**
+ * Terrain Definitions
+ *
+ */
 export const terrainDefinitions = [
   {
     slug: "grass",
